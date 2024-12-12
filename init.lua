@@ -24,12 +24,12 @@ end
 ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
--- Add plugins for lazy
+-- NOTE: Add plugins for lazy
 require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
-  -- Colorscheme
+  -- NOTE: Colorscheme
   {
     'folke/tokyonight.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins
@@ -38,8 +38,38 @@ require('lazy').setup({
       -- vim.cmd.hi 'Comment gui=none'
     end,
   },
+
+  -- Interact with git in the editor
+  'lewis6991/gitsigns.nvim',
+
+  -- Lua LSP for neovim config
+  {
+    'folke/lazydev.nvim',
+    ft = 'lua',
+    opts = {
+      library = {
+        { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+      },
+    },
+  },
+  { 'Bilal2453/luvit-meta', lazy = true },
+
+  -- Highlight comments with 'name: ' syntax. Supports: NOTE: HACK: WARN: PERF: and TEST:  
+  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+
+  -- A grab bag of functionality
+  require('plugins.mini')
+
+
+  -- LSP
+
+  -- Code Navigation (tree-sitter)
+
+  -- Debugging
+
 }, {
   ui = {
+    -- Set icons to an empty table which will use the default lazy.nvim defined Nerd Font Icons
     icons = {}
   }
 })
