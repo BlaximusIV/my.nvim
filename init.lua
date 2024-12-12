@@ -1,51 +1,46 @@
-require("testplugin")
 
--- General Vim Editing Configuration
--- Documentation for individual options can be found at https://vimdoc.sourceforge.net/htmldoc/options.html
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.mouse = 'a'
-vim.opt.showmode = false
+require("config.vimoptions")
+require("config.vimkeymaps")
 
--- Sync clipboard between OS and Neovim
-vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
-end)
+-- Highlight yanks
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
 
-vim.opt.breakindent = true
--- Save undo history
-vim.opt.undofile = true
+-- Install the 'lazy.nvim' plugin manager
+-- See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
+local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
+  local out = vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
+  if vim.v.shell_error ~= 0 then
+    error('Error cloning lazy.nvim:\n' .. out)
+  end
+end
+---@diagnostic disable-next-line: undefined-field
+vim.opt.rtp:prepend(lazypath)
 
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+-- Add plugins for lazy
+require('lazy').setup({
+  -- Detect tabstop and shiftwidth automatically
+  'tpope/vim-sleuth',
 
-vim.opt.signcolumn = 'yes'
--- Also try
--- vim.opt.signcolumn = number
+  -- Colorscheme
+  {
+    'folke/tokyonight.nvim',
+    priority = 1000, -- Make sure to load this before all the other start plugins
+    init = function()
+      vim.cmd.colorscheme 'tokyonight-night'
+      -- vim.cmd.hi 'Comment gui=none'
+    end,
+  },
+}, {
+  ui = {
+    icons = {}
+  }
+})
 
--- How many milliseconds to wait with nothing typed before saving swap to disk
-vim.opt.updatetime = 250
-
--- The time in milliseconds that is waited for a key code or mapped key sequence to complete.
-vim.opt.timeoutlen = 300
-
--- How splits should be opened
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-
--- Set how neovim displays some whitespace
-vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-
--- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
-
--- Show shich line your cursor is on
-vim.opt.cursorline = true
-
--- Minimum number of screen lines to keep above and below the cursor, as a buffer
-vim.opt.scrolloff = 10
-
--- Keymaps

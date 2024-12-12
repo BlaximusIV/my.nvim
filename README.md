@@ -7,7 +7,7 @@ There are a few prerequisites for the plugins to work correctly.
   - Neovim
   - A Nerd Font
   - git
-  - make
+  - make / GnuWin32
   - ripgrep
   - wget
   - fd
