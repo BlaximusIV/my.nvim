@@ -21,3 +21,7 @@ If using windows, I suggest using the chocolatey package manager for as much of 
 
 ## Structure
 In general, this is all trying to make the plugins modular and digestible using the plugin structure in the `:help lua-guide` documentation.
+
+## Other Notes
+Other things to keep in mind
+  - You may need to update LSP servers after installing them for them to start working on the code
