@@ -1,5 +1,3 @@
-print("Loading vim options")
-
 -- General Vim Editing Configuration
 -- Documentation for individual options can be found at https://vimdoc.sourceforge.net/htmldoc/options.html
 vim.g.mapleader = ' '

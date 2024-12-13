@@ -1,6 +1,5 @@
-
-require("config.vimoptions")
-require("config.vimkeymaps")
+require("config.options")
+require("config.keymaps")
 
 -- Highlight yanks
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -58,18 +57,30 @@ require('lazy').setup({
   { 'Bilal2453/luvit-meta', lazy = true },
 
   -- NOTE:Highlight comments with 'WORD: ' syntax. Supports: note, hack, warn, perf, and test
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  {
+    'folke/todo-comments.nvim',
+    event = 'VimEnter',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = { signs = false }
+  },
 
   -- A grab bag of functionality
-  require('plugins.mini')
+  require('plugins.mini'),
 
   -- Fuzzy finding
-  -- WARN: Not working quite yet
-  -- require('plugins.telescope')
+  require('plugins.telescope'),
 
-  -- LSP
+  -- Autocompletion
+  require('plugins.cmp'),
+
+  -- Auto Formatting
+  require('plugins.formatting'),
+
+  -- Primary LSP config, Depends on the plugins.cmp
+  require('plugins.lsp'),
 
   -- Code Navigation (tree-sitter)
+  require('plugins.treesitter')
 
   -- Debugging
 

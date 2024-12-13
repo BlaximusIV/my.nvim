@@ -1,5 +1,3 @@
-print("Loading vim keymaps")
-
 -- Clear highlights on search
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
