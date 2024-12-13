@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- Install the 'lazy.nvim' plugin manager
+-- NOTE: Install the 'lazy.nvim' plugin manager
 -- See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -24,12 +24,11 @@ end
 ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
--- NOTE: Add plugins for lazy
+-- NOTE: ADD PLUGINS VIA LAZY PLUGIN MANAGER
 require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
-
-  -- NOTE: Colorscheme
+  -- Theme
   {
     'folke/tokyonight.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins
@@ -42,7 +41,11 @@ require('lazy').setup({
   -- Interact with git in the editor
   'lewis6991/gitsigns.nvim',
 
+  -- Show pending keybindings
+  require('plugins.which-key'),
+
   -- Lua LSP for neovim config
+  -- WARN: Not sure that these are working
   {
     'folke/lazydev.nvim',
     ft = 'lua',
@@ -54,12 +57,15 @@ require('lazy').setup({
   },
   { 'Bilal2453/luvit-meta', lazy = true },
 
-  -- Highlight comments with 'name: ' syntax. Supports: NOTE: HACK: WARN: PERF: and TEST:  
+  -- NOTE:Highlight comments with 'WORD: ' syntax. Supports: note, hack, warn, perf, and test
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
   -- A grab bag of functionality
   require('plugins.mini')
 
+  -- Fuzzy finding
+  -- WARN: Not working quite yet
+  -- require('plugins.telescope')
 
   -- LSP
 
