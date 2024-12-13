@@ -1,5 +1,5 @@
-require("config.options")
-require("config.keymaps")
+require 'config.options'
+require 'config.keymaps'
 
 -- Highlight yanks
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -41,7 +41,7 @@ require('lazy').setup({
   'lewis6991/gitsigns.nvim',
 
   -- Show pending keybindings
-  require('plugins.which-key'),
+  require 'plugins.which-key',
 
   -- Lua LSP for neovim config
   -- WARN: Not sure that these are working
@@ -61,33 +61,31 @@ require('lazy').setup({
     'folke/todo-comments.nvim',
     event = 'VimEnter',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = { signs = false }
+    opts = { signs = false },
   },
 
   -- A grab bag of functionality
-  require('plugins.mini'),
+  require 'plugins.mini',
 
   -- Fuzzy finding
-  require('plugins.telescope'),
+  require 'plugins.telescope',
 
   -- Autocompletion
-  require('plugins.cmp'),
+  require 'plugins.cmp',
 
   -- Auto Formatting
-  require('plugins.formatting'),
+  require 'plugins.formatting',
 
   -- Primary LSP config, Depends on the plugins.cmp
-  require('plugins.lsp'),
+  require 'plugins.lsp',
 
   -- Code Navigation (tree-sitter)
-  require('plugins.treesitter')
+  require 'plugins.treesitter',
 
   -- Debugging
-
 }, {
   ui = {
     -- Set icons to an empty table which will use the default lazy.nvim defined Nerd Font Icons
-    icons = {}
-  }
+    icons = {},
+  },
 })
-

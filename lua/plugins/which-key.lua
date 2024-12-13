@@ -4,9 +4,9 @@ return {
   opts = {
     icons = {
       mappings = true,
-      -- Because a Nerd Font is being used, set to an empty table, 
+      -- Because a Nerd Font is being used, set to an empty table,
       -- which will use the default which-key Nerd Font icons
-      keys = {}
+      keys = {},
     },
     spec = {
       { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
@@ -16,6 +16,6 @@ return {
       { '<leader>w', group = '[W]orkspace' },
       { '<leader>t', group = '[T]oggle' },
       { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
-    }
-  }
+    },
+  },
 }

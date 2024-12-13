@@ -7,8 +7,8 @@ return {
     {
       'nvim-telescope/telescope-fzf-native.nvim',
       build = 'make',
-      cond = function ()
-	return vim.fn.executable 'make' == 1
+      cond = function()
+        return vim.fn.executable 'make' == 1
       end,
     },
     'nvim-telescope/telescope-ui-select.nvim',
@@ -18,9 +18,9 @@ return {
     -- NOTE: see :Telescope help_tags
     require('telescope').setup {
       extensions = {
-	['ui-select'] = {
-	  require('telescope.themes').get_dropdown(),
-	},
+        ['ui-select'] = {
+          require('telescope.themes').get_dropdown(),
+        },
       },
     }
 
@@ -42,7 +42,7 @@ return {
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
     vim.keymap.set('n', '<leader>/', function()
-    -- You can pass additional configuration to Telescope to change the theme, layout, etc.
+      -- You can pass additional configuration to Telescope to change the theme, layout, etc.
       builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
         winblend = 10,
         previewer = false,
@@ -60,5 +60,5 @@ return {
     vim.keymap.set('n', '<leader>sn', function()
       builtin.find_files { cwd = vim.fn.stdpath 'config' }
     end, { desc = '[S]earch [N]eovim files' })
-  end
+  end,
 }

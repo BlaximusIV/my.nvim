@@ -45,4 +45,3 @@ vim.opt.cursorline = true
 
 -- Minimum number of screen lines to keep above and below the cursor, as a buffer
 vim.opt.scrolloff = 10
-
