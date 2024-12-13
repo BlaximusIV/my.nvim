@@ -29,11 +29,10 @@ require('lazy').setup({
   'tpope/vim-sleuth',
   -- Theme
   {
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins
+    'Shatur/neovim-ayu',
+    priority = 1000,
     init = function()
-      vim.cmd.colorscheme 'tokyonight-night'
-      -- vim.cmd.hi 'Comment gui=none'
+      vim.cmd.colorscheme 'ayu-dark'
     end,
   },
 
