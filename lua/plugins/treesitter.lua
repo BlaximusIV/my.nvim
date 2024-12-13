@@ -13,6 +13,7 @@ return { -- Highlight, edit, and navigate code
       'luadoc',
       'markdown',
       'markdown_inline',
+      'python',
       'query',
       'vim',
       'vimdoc',

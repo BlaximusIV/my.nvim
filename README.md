@@ -16,6 +16,8 @@ There are a few prerequisites for the plugins to work correctly.
   - mingw
   - gcc
   - nodejs
+  - pip
+  - debugpy
 
 If using windows, I suggest using the chocolatey package manager for as much of the installation as possible. It makes it all much easier. `winget install Chocolatey`.
 

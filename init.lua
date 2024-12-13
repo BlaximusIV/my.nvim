@@ -83,6 +83,7 @@ require('lazy').setup({
   require 'plugins.treesitter',
 
   -- Debugging
+  require 'plugins.debug',
 }, {
   ui = {
     -- Set icons to an empty table which will use the default lazy.nvim defined Nerd Font Icons
