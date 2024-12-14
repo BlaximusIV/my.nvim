@@ -4,6 +4,7 @@ My personal neovim configuration, from scratch, inspired from kickstart.nvim. Or
 ## Preinstallation
 There are a few prerequisites for the plugins to work correctly. 
 
+Base Requirements
   - Neovim
   - A Nerd Font
   - git
@@ -16,8 +17,12 @@ There are a few prerequisites for the plugins to work correctly.
   - mingw
   - gcc
   - nodejs
-  - pip
-  - debugpy
+Python Development
+  - python
+  - pip `python -m ensurepip --upgrade`
+  - debugpy `pip install debugpy`
+Csharp Development
+  - dotnet 8 sdk `winget install Microsoft.DotNet.SDK.8`
 
 If using windows, I suggest using the chocolatey package manager for as much of the installation as possible. It makes it all much easier. `winget install Chocolatey`.
 

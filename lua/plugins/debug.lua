@@ -18,7 +18,6 @@ return {
     'mfussenegger/nvim-dap-python',
   },
   keys = {
-    -- Basic debugging keymaps, feel free to change to your liking!
     {
       '<F5>',
       function()
@@ -88,6 +87,7 @@ return {
         -- Update this to ensure that you have the debuggers for the langs you want
         -- The debugger itself, e.g. 'delve',
         'debugpy', -- Requires debugpy be installed, `pip install debugpy`
+        'netcoredbg', -- www.github.com/Samsung/netcoredbg
       },
     }
 
@@ -96,6 +96,26 @@ return {
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
+
+    dap.set_log_level 'DEBUG'
+
+    -- NOTE:C# settings
+    dap.adapters.coreclr = {
+      type = 'executable',
+      command = 'C:\\Users\\Neal\\code_resources\\netcoredbg\\netcoredbg', -- NOTE: change to match current executable location and have rights to execute
+      args = { '--interpreter=vscode' },
+    }
+
+    dap.configurations.cs = {
+      {
+        type = 'coreclr',
+        name = 'launch - netcoredbg',
+        request = 'launch',
+        program = function()
+          return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '\\bin\\Debug\\net9.0\\') -- NOTE:Update the path for operating system and project location
+        end,
+      },
+    }
 
     -- NOTE: Install language specific configs
     --require('dap-go').setup {
