@@ -16,6 +16,14 @@ return {
     -- NOTE:Debug adapters
     -- e.g. the dap extension for go: 'leoluz/nvim-dap-go',
     'mfussenegger/nvim-dap-python',
+    -- NOTE:more than just an adapter
+    'nvim-flutter/flutter-tools.nvim',
+    lazy = true,
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'stevearc/dressing.nvim',
+    },
+    config = true,
   },
   keys = {
     {
@@ -81,11 +89,8 @@ return {
       handlers = {},
 
       -- You'll need to check that you have the required things installed
-      -- online, please don't ask me how to install them :)
       -- NOTE:Where the debuggers are added, these are manually installed external executables
       ensure_installed = {
-        -- Update this to ensure that you have the debuggers for the langs you want
-        -- The debugger itself, e.g. 'delve',
         'debugpy', -- Requires debugpy be installed, `pip install debugpy`
         'netcoredbg', -- www.github.com/Samsung/netcoredbg
       },
@@ -102,7 +107,7 @@ return {
     -- NOTE:C# settings
     dap.adapters.coreclr = {
       type = 'executable',
-      command = 'C:\\Users\\Neal\\code_resources\\netcoredbg\\netcoredbg', -- NOTE: change to match current executable location and have rights to execute
+      command = 'netcoredbg', -- NOTE:Ensure that the path to the netcoredbg executable is in the path variable
       args = { '--interpreter=vscode' },
     }
 
@@ -118,13 +123,6 @@ return {
     }
 
     -- NOTE: Install language specific configs
-    --require('dap-go').setup {
-    --delve = {
-    ---- On Windows delve must be run attached or it crashes.
-    ---- See https://github.com/leoluz/nvim-dap-go/blob/main/README.md#configuring
-    --detached = vim.fn.has 'win32' == 0,
-    --},
-    --}
     require('dap-python').setup 'python3'
   end,
 }

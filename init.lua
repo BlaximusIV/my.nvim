@@ -1,6 +1,10 @@
 require 'config.options'
 require 'config.keymaps'
 
+-- NOTE: Set default terminal
+vim.g.shell = 'powershell.exe'
+vim.g.shellcmdflag = '-NoLogo -NoProfile'
+
 -- Highlight yanks
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
