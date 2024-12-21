@@ -25,58 +25,7 @@ return {
     },
     config = true,
   },
-  keys = {
-    {
-      '<F5>',
-      function()
-        require('dap').continue()
-      end,
-      desc = 'Debug: Start/Continue',
-    },
-    {
-      '<F11>',
-      function()
-        require('dap').step_into()
-      end,
-      desc = 'Debug: Step Into',
-    },
-    {
-      '<F10>',
-      function()
-        require('dap').step_over()
-      end,
-      desc = 'Debug: Step Over',
-    },
-    {
-      '<F12>',
-      function()
-        require('dap').step_out()
-      end,
-      desc = 'Debug: Step Out',
-    },
-    {
-      '<leader>b',
-      function()
-        require('dap').toggle_breakpoint()
-      end,
-      desc = 'Debug: Toggle Breakpoint',
-    },
-    {
-      '<leader>B',
-      function()
-        require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ')
-      end,
-      desc = 'Debug: Set Breakpoint',
-    },
-    -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-    {
-      '<F7>',
-      function()
-        require('dapui').toggle()
-      end,
-      desc = 'Debug: See last session result.',
-    },
-  },
+  keys = require 'plugins.plugin_modules.debug_keymaps',
   config = function()
     local dap = require 'dap'
     local dapui = require 'dapui'
@@ -122,7 +71,46 @@ return {
       },
     }
 
+    --NOTE:Flutter settings
+    dap.adapters.dart = {
+      type = 'executable',
+      command = 'flutter',
+      args = { 'debug_adapter' },
+    }
+
+    dap.configurations.dart = {
+      {
+        type = 'dart',
+        request = 'launch',
+        name = 'Launch Flutter Application',
+        program = function()
+          return vim.fn.input('Path to main Dart file: ', vim.fn.getcwd() .. '\\lib\\main.dart', 'file')
+          -- return vim.fn.getcwd() .. '\\lib'
+        end,
+        cwd = '${workspaceFolder}',
+        toolArgs = { '-d', 'chrome' }, -- Specify the target device; adjust as needed
+        args = { '--flavor', 'development' }, -- Additional arguments for the Flutter run command
+        -- dartSdkPath = '/path/to/dart-sdk', -- Optional: specify the Dart SDK path
+        -- flutterSdkPath = 'C:\\SDKs\\flutter\\bin', -- Optional: specify the Flutter SDK path
+        env = { VAR_NAME = 'value' }, -- Environment variables for the debugging session
+        console = 'integratedTerminal', -- Use Neovim's integrated terminal for input/output
+      },
+    }
+
     -- NOTE: Install language specific configs
     require('dap-python').setup 'python3'
+
+    require('flutter-tools').setup {
+      debugger = {
+        enabled = true,
+        run_via_dap = true,
+      },
+      lsp = {
+        on_attach = function(client, bufnr)
+          -- Your custom on_attach function
+        end,
+        capabilities = require('cmp_nvim_lsp').default_capabilities(),
+      },
+    }
   end,
 }

@@ -11,7 +11,6 @@ return {
 
     -- Allows extra capabilities provided by nvim-cmp
     'hrsh7th/cmp-nvim-lsp',
-    'nvim-flutter/flutter-tools.nvim',
   },
   config = function()
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -106,7 +105,6 @@ return {
     }
 
     require('lspconfig').dartls.setup {}
-    require('flutter-tools').setup {}
 
     -- Ensure the servers and tools above are installed
     require('mason').setup()
