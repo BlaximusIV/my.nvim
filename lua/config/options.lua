@@ -45,3 +45,13 @@ vim.opt.cursorline = true
 
 -- Minimum number of screen lines to keep above and below the cursor, as a buffer
 vim.opt.scrolloff = 10
+
+-- NOTE: Set default terminal
+vim.g.shell = 'powershell.exe'
+vim.g.shellcmdflag = '-NoLogo -NoProfile'
+
+-- Nvim-Tree setup
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+vim.opt.termguicolors = true

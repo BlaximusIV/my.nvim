@@ -1,10 +1,6 @@
 require 'config.options'
 require 'config.keymaps'
 
--- NOTE: Set default terminal
-vim.g.shell = 'powershell.exe'
-vim.g.shellcmdflag = '-NoLogo -NoProfile'
-
 -- Highlight yanks
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
@@ -87,6 +83,9 @@ require('lazy').setup({
 
   -- Debugging
   require 'plugins.debug',
+
+  -- File tree
+  require 'plugins.nvim-tree',
 }, {
   ui = {
     -- Set icons to an empty table which will use the default lazy.nvim defined Nerd Font Icons
