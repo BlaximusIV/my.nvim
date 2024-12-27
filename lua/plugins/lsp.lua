@@ -104,8 +104,6 @@ return {
       },
     }
 
-    require('lspconfig').dartls.setup {}
-
     -- Ensure the servers and tools above are installed
     require('mason').setup()
 
