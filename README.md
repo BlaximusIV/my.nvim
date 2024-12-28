@@ -32,3 +32,4 @@ In general, this is all trying to make the plugins modular and digestible using 
 ## Other Notes
 Other things to keep in mind
   - You may need to update LSP servers after installing them for them to start working on the code
+  - Flutter is run and debugged via flutter commands e.g. :FlutterRun, :FlutterQuit

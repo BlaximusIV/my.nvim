@@ -88,18 +88,12 @@ return {
           project_config = true,
         },
       },
-      -- debugger = { -- integrate with nvim dap + install dart code debugger
-      --   enabled = false,
-      --   exception_breakpoints = {},
-      --   evaluate_to_string_in_debug_views = true,
-      --   register_configurations = function(paths)
-      --     require('dap').configurations.dart = {
-      --       --put here config that you would find in .vscode/launch.json
-      --     }
-      --     -- If you want to load .vscode launch.json automatically run the following:
-      --     -- require("dap.ext.vscode").load_launchjs()
-      --   end,
-      -- },
+      debugger = { -- integrate with nvim dap + install dart code debugger
+        enabled = true,
+        run_via_dap = true,
+        exception_breakpoints = {},
+        evaluate_to_string_in_debug_views = true,
+      },
       fvm = false, -- takes priority over path, uses <workspace>/.fvm/flutter_sdk if enabled
       widget_guides = {
         enabled = false,
