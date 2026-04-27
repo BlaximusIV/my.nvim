@@ -32,6 +32,7 @@ return { -- Autoformat
       }
     end,
     formatters_by_ft = {
+      javascript = { 'prettier' },
       lua = { 'stylua' },
       -- Add other formats here
     },

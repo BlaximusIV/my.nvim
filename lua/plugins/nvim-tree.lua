@@ -1,6 +1,6 @@
 return {
   'nvim-tree/nvim-tree.lua',
-  lazy = true,
+  lazy = false,
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
     local function my_on_attach(bufnr)

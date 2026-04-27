@@ -89,7 +89,7 @@ return {
     -- NOTE:Add servers here
     local servers = {
       pyright = {},
-      csharp_ls = {},
+      omnisharp = {},
 
       lua_ls = {
         settings = {

@@ -86,6 +86,12 @@ require('lazy').setup({
 
   -- File tree
   require 'plugins.nvim-tree',
+
+  -- Resume sessions
+  require 'plugins.auto-session',
+
+  -- Fun sounds
+  require 'plugins.player-one',
 }, {
   ui = {
     -- Set icons to an empty table which will use the default lazy.nvim defined Nerd Font Icons
