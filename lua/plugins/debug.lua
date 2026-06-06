@@ -44,7 +44,6 @@ return {
       ensure_installed = {
         'debugpy', -- Requires debugpy be installed, `pip install debugpy`
         'netcoredbg', -- www.github.com/Samsung/netcoredbg
-        'flutter-tools',
       },
     }
 
@@ -69,7 +68,7 @@ return {
         name = 'launch - netcoredbg',
         request = 'launch',
         program = function()
-          return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '\\bin\\Debug\\net9.0\\') -- NOTE:Update the path for operating system and project location
+          return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/net9.0/') -- NOTE:Update the path for operating system and project location
         end,
       },
     }
@@ -109,7 +108,7 @@ return {
         },
         outline = {
           open_cmd = '30vnew',
-          auto_open = true,
+          auto_open = false,
         },
         capabilities = capabilities,
         settings = {

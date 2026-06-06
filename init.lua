@@ -92,6 +92,9 @@ require('lazy').setup({
 
   -- Fun sounds
   require 'plugins.player-one',
+
+  -- Markdown preview
+  require 'plugins.markdown',
 }, {
   ui = {
     -- Set icons to an empty table which will use the default lazy.nvim defined Nerd Font Icons
